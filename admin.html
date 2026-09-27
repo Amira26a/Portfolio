@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="robots" content="noindex, nofollow">
+    <title>لوحة الإدارة | المحفظة</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="admin.css">
+    <script src="supabase-config.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js" defer></script>
+    <script src="admin.js" defer></script>
+  </head>
+  <body class="admin-page">
+    <main class="admin-shell">
+      <section class="login-view" id="login-view" aria-labelledby="login-title">
+        <a class="admin-brand" href="index.html"><span>AA</span><i>.</i></a>
+        <p class="admin-eyebrow">مساحة خاصة · إدارة المحفظة</p>
+        <h1 id="login-title">مرحباً بعودتك.</h1>
+        <p class="login-intro">سجّل الدخول ببريد المدير وكلمة المرور لإدارة محتوى الموقع.</p>
+        <div class="admin-notice" id="setup-notice" role="status" hidden></div>
+        <form id="login-form" class="login-form" hidden>
+          <label for="login-email">البريد الإلكتروني</label>
+          <input id="login-email" name="email" type="email" autocomplete="username" required>
+          <label for="login-password">كلمة المرور</label>
+          <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+          <button class="admin-primary" type="submit">تسجيل الدخول <span aria-hidden="true">←</span></button>
+          <p class="admin-feedback" id="login-feedback" aria-live="polite"></p>
+        </form>
+        <a class="back-link" href="index.html">العودة إلى الموقع <span aria-hidden="true">↗</span></a>
+      </section>
+
+      <section class="admin-app" id="admin-app" hidden>
+        <aside class="admin-sidebar">
+          <a class="admin-brand" href="index.html"><span>AA</span><i>.</i></a>
+          <p class="sidebar-label">مساحة العمل</p>
+          <nav class="admin-tabs" aria-label="أقسام لوحة الإدارة" role="tablist">
+            <button type="button" role="tab" aria-selected="true" data-panel="overview">نظرة عامة <span>01</span></button>
+            <button type="button" role="tab" aria-selected="false" data-panel="projects">المشاريع <span>02</span></button>
+            <button type="button" role="tab" aria-selected="false" data-panel="metrics">المؤشرات <span>03</span></button>
+            <button type="button" role="tab" aria-selected="false" data-panel="certificates">الشهادات <span>04</span></button>
+            <button type="button" role="tab" aria-selected="false" data-panel="skills">المهارات <span>05</span></button>
+            <button type="button" role="tab" aria-selected="false" data-panel="messages">الرسائل <span>06</span></button>
+          </nav>
+          <a class="sidebar-site-link" href="index.html">عرض الموقع <span aria-hidden="true">↗</span></a>
+          <button class="signout-button" id="signout-button" type="button">تسجيل الخروج <span aria-hidden="true">⇥</span></button>
+        </aside>
+
+        <div class="admin-main">
+          <header class="admin-topbar"><div><p class="admin-eyebrow">مساحة العمل / <span id="current-panel-name">نظرة عامة</span></p><h1 id="admin-heading">لوحة الإدارة</h1></div><div class="admin-account"><span class="account-indicator"></span><span id="admin-email-label"></span></div></header>
+          <p class="admin-feedback global-feedback" id="global-feedback" aria-live="polite"></p>
+
+          <section class="admin-panel overview-panel" id="panel-overview" role="tabpanel">
+            <div class="welcome-row"><div><span class="panel-kicker">ملخص المحفظة</span><h2>كل شيء في مكان واحد.</h2></div><span class="date-stamp" id="today-date"></span></div>
+            <div class="overview-stats">
+              <article><span>المشاريع المنشورة</span><strong id="overview-projects">—</strong></article>
+              <article><span>المؤشرات</span><strong id="overview-metrics">—</strong></article>
+              <article><span>الشهادات والمهارات</span><strong id="overview-learning">—</strong></article>
+              <article><span>رسائل غير مقروءة</span><strong id="overview-unread">—</strong></article>
+            </div>
+            <div class="overview-bottom"><div><span class="panel-kicker">إدارة المحتوى</span><h3>آخر الرسائل الواردة</h3><p>تظهر رسائل نموذج التواصل هنا، ولا يمكن للزوار الوصول إليها.</p></div><button type="button" class="admin-secondary" data-open-panel="messages">عرض الرسائل <span aria-hidden="true">←</span></button></div>
+            <div class="message-list compact-list" id="recent-messages"></div>
+          </section>
+
+          <section class="admin-panel records-panel" id="panel-projects" data-collection="projects" role="tabpanel" hidden>
+            <div class="panel-toolbar"><div><span class="panel-kicker">مكتبة الأعمال</span><h2>المشاريع</h2></div><button class="admin-primary add-record" type="button">إضافة مشروع <span>＋</span></button></div>
+            <form class="record-editor" hidden></form><div class="record-list"></div>
+          </section>
+          <section class="admin-panel records-panel" id="panel-metrics" data-collection="metrics" role="tabpanel" hidden>
+            <div class="panel-toolbar"><div><span class="panel-kicker">أرقام المحفظة</span><h2>المؤشرات</h2></div><button class="admin-primary add-record" type="button">إضافة مؤشر <span>＋</span></button></div>
+            <form class="record-editor" hidden></form><div class="record-list"></div>
+          </section>
+          <section class="admin-panel records-panel" id="panel-certificates" data-collection="certificates" role="tabpanel" hidden>
+            <div class="panel-toolbar"><div><span class="panel-kicker">التعلم والتطوير</span><h2>الشهادات والتدريب</h2></div><button class="admin-primary add-record" type="button">إضافة شهادة <span>＋</span></button></div>
+            <form class="record-editor" hidden></form><div class="record-list"></div>
+          </section>
+          <section class="admin-panel records-panel" id="panel-skills" data-collection="skills" role="tabpanel" hidden>
+            <div class="panel-toolbar"><div><span class="panel-kicker">الأدوات والخبرات</span><h2>المهارات</h2></div><button class="admin-primary add-record" type="button">إضافة مهارة <span>＋</span></button></div>
+            <form class="record-editor" hidden></form><div class="record-list"></div>
+          </section>
+          <section class="admin-panel records-panel" id="panel-messages" data-collection="messages" role="tabpanel" hidden>
+            <div class="panel-toolbar"><div><span class="panel-kicker">صندوق الوارد</span><h2>رسائل التواصل</h2></div><span class="inbox-count" id="inbox-count">0 رسالة</span></div>
+            <div class="message-list full-list" id="all-messages"></div>
+          </section>
+          <footer class="admin-footer"><span>المحتوى يُحفظ في Supabase</span><span>الاتصال مشفّر عبر HTTPS</span></footer>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
