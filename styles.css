@@ -97,9 +97,8 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-intro { max-width: 440px; margin-bottom: 24px; color: var(--muted); font-size: 15px; line-height: 1.9; }
 .hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; }
 .hero-contact-links { display: flex; flex-wrap: wrap; gap: 8px 17px; margin-top: 24px; }
-.hero-contact-links a { color: var(--white); font-size: 10px; font-weight: 700; }
+.hero-contact-links a { display: inline-flex; align-items: center; gap: 6px; color: var(--white); font-size: 10px; font-weight: 700; }
 .hero-contact-links a:hover { color: var(--plum); }
-.hero-contact-links a span { padding-left: 3px; color: var(--teal); }
 .button { display: inline-flex; min-height: 48px; align-items: center; justify-content: center; gap: 20px; padding: 0 19px; border: 1px solid transparent; font-size: 12px; font-weight: 800; transition: all .3s ease; }
 .button:hover { transform: translateY(-2px); }
 .button-primary { border: none; background: var(--action-bg); box-shadow: 0 0 15px rgb(216 180 254 / 20%); color: var(--action-text); font-weight: 600; }
@@ -107,8 +106,7 @@ h1, h2, h3, p { margin-top: 0; }
 .hero-actions .button-text { padding-inline: 14px; border: 1px solid rgb(216 180 254 / 30%); background: transparent; color: var(--white); transition: all .3s ease; }
 .hero-actions .button-text:hover { border-color: var(--plum); box-shadow: 0 0 15px rgb(216 180 254 / 15%); color: var(--plum); }
 .hero-footnote { display: flex; align-items: center; gap: 13px; margin-top: 73px; color: var(--white); font-size: 9px; letter-spacing: .8px; }
-.hero-footnote-label { font-size: 14px; font-weight: 600; }
-.hero-footnote .mono { color: var(--coral); }
+.hero-footnote-label { color: var(--coral); font-size: 14px; font-weight: 600; }
 .hero-art { position: relative; min-width: 0; min-height: 0; display: grid; align-items: center; justify-items: center; animation: rise-in .85s .1s both; }
 .hero-portrait { position: relative; z-index: 1; width: min(100%, 360px); margin: 0; }
 .hero-portrait .portrait-placeholder { width: 100%; min-height: 0; aspect-ratio: 1; border: 2px solid var(--plum); border-radius: 50%; background: var(--surface); box-shadow: 0 0 30px rgb(216 180 254 / 15%); }
