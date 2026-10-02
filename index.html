@@ -6,6 +6,12 @@
     <meta name="theme-color" content="#000000">
     <meta name="description" content="Amira Adel Obeid is a junior data analyst in Alexandria, Egypt, specializing in Python, SQL, Excel, and Power BI.">
     <title>Amira Adel Obeid | Data Analyst</title>
+    <script>
+      try {
+        const savedTheme = localStorage.getItem("portfolio-theme");
+        if (savedTheme === "light" || savedTheme === "dark") document.documentElement.dataset.theme = savedTheme;
+      } catch {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,12 +32,12 @@
         <ul class="nav-links" id="nav-links">
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About me</a></li>
-          <li><a href="#dashboard">Dashboard</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#skills">Skills</a></li>
-          <li><a href="#training">Training</a></li>
+          <li><a href="#training">Certifications</a></li>
           <li><a class="nav-contact" href="#contact">Contact <span aria-hidden="true">↗</span></a></li>
         </ul>
+        <button class="theme-toggle" type="button" aria-label="Switch to light theme" title="Switch to light theme"><span class="theme-toggle-icon" aria-hidden="true">☼</span></button>
       </nav>
     </header>
 
@@ -72,36 +78,27 @@
         </div>
         <div class="about-grid">
           <dl class="profile-facts" aria-label="Profile highlights">
-            <div class="profile-fact"><dt>EDUCATION</dt><dd>MSc Materials Science</dd><span>Alexandria University</span></div>
-            <div class="profile-fact"><dt>PROFESSIONAL TRAINING</dt><dd>Professional Data Analytics</dd><span>Digital Egypt Pioneers Initiative (DEPI)</span></div>
-            <div class="profile-fact"><dt>LANGUAGES</dt><dd>Arabic · English</dd><span>Native · Professional working proficiency</span></div>
+            <div class="profile-fact"><dt>EDUCATION</dt><dd>MSc Materials Science</dd><span>Alexandria University · <span class="education-period">2023-2026</span></span><span>Research, Statistics, and Experimental data analysis</span></div>
+            <div class="profile-fact"><dt>TRAINING</dt><dd>Professional Data Analytics</dd><span>Digital Egypt Pioneers Initiative (DEPI)</span><span class="education-period">2026-2027</span><span>Python, SQL, Excel and Power BI</span></div>
+            <div class="profile-fact"><dt>LANGUAGES</dt><dd>Arabic · English</dd><span>Native · Professional</span></div>
           </dl>
           <div class="about-copy">
-            <p class="about-lead">I build end-to-end analytical workflows that turn complex research data into reproducible, publication-ready insight.</p>
-            <p>Using Python (Pandas, NumPy, SciPy, and Matplotlib), SQL, Excel, and OriginLab, I process datasets, automate curve fitting, and create publication-ready spectral visualizations. This data-driven approach has reduced raw processing time by over 40%.</p>
-            <div class="about-note"><span class="note-mark">✳</span><span><strong>Scientific Data Analyst · R&amp;D</strong><br>Currently advancing my analytics toolkit through DEPI and seeking opportunities to improve research pipelines with data-driven insight.</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="dashboard-section section-pad" id="dashboard" aria-labelledby="dashboard-title">
-        <div class="section-wrap">
-          <div class="section-heading dashboard-heading">
-            <div><p class="eyebrow">PROFILE AT A GLANCE <span class="eyebrow-divider">/</span> 02</p><h2 id="dashboard-title">Experience and study.<br><span>Grounded in evidence.</span></h2></div>
-            <p class="section-aside">A factual snapshot of the projects, certifications, education, and languages listed in my CV.</p>
-          </div>
-          <div class="kpi-grid" aria-label="Analytics work metrics">
-            <article class="kpi-card kpi-teal"><span class="kpi-label">FEATURED<br>PROJECTS</span><div class="kpi-number"><span data-count="3">0</span></div><span class="kpi-foot">Healthcare, demographic, and analytics work.</span><span class="kpi-index mono">01</span></article>
-            <article class="kpi-card kpi-coral"><span class="kpi-label">CERTIFICATES &amp;<br>TRAINING PROGRAMS</span><div class="kpi-number"><span data-count="4">0</span></div><span class="kpi-foot">Listed in my CV.</span><span class="kpi-index mono">02</span></article>
-            <article class="kpi-card kpi-blue"><span class="kpi-label">LANGUAGES</span><div class="kpi-number"><span data-count="2">0</span></div><span class="kpi-foot">Arabic: Native · English: Professional working proficiency.</span><span class="kpi-index mono">03</span></article>
-            <article class="kpi-card kpi-dark"><span class="kpi-label">MASTER'S<br>DEGREE</span><div class="kpi-number"><span data-count="1">0</span></div><span class="kpi-foot">Materials Science, Alexandria University.</span><span class="kpi-index mono">04</span></article>
+            <div class="about-prose">
+              <p class="about-lead">I build end-to-end analytical workflows that turn complex datasets into actionable, data-driven insights.</p>
+              <p>Using Python, SQL, Excel, and Power BI, I clean, analyze, and visualize data to solve complex problems and drive clear business decisions.</p>
+            </div>
+            <dl class="about-stats" aria-label="Portfolio metrics">
+              <div><dd>10+</dd><dt>Completed Projects</dt></div>
+              <div><dd>6+</dd><dt>Technologies Mastered</dt></div>
+              <div><dd>300+</dd><dt>Training &amp; Analytics Hrs</dt></div>
+            </dl>
           </div>
         </div>
       </section>
 
       <section class="projects-section section-wrap section-pad" id="projects" aria-labelledby="projects-title">
         <div class="section-heading project-heading">
-          <div><p class="eyebrow">SELECTED PROJECTS <span class="eyebrow-divider">/</span> 03</p><h2 id="projects-title">Analysis in practice.<br><span>Questions with purpose.</span></h2></div>
+          <div><p class="eyebrow">SELECTED PROJECTS <span class="eyebrow-divider">/</span> 02</p><h2 id="projects-title">Analysis in practice.<br><span>Questions with purpose.</span></h2></div>
           <span class="project-count mono"><span id="visible-count">03</span> PROJECTS</span>
         </div>
         <div class="filter-row" role="group" aria-label="Filter projects by tool">
@@ -113,11 +110,11 @@
         </div>
         <div class="project-grid" id="project-grid" aria-live="polite">
           <article class="project-card project-featured" data-categories="python">
-            <div class="project-visual visual-eda" aria-hidden="true"><div class="visual-topline"><span>HEALTHCARE ANALYTICS</span><span>PYTHON / EDA</span></div><div class="histogram"><i style="--bar:38%"></i><i style="--bar:54%"></i><i style="--bar:45%"></i><i style="--bar:73%"></i><i style="--bar:65%"></i><i style="--bar:88%"></i><i style="--bar:76%"></i><i style="--bar:96%"></i><i style="--bar:61%"></i><i style="--bar:79%"></i><i style="--bar:51%"></i></div><div class="histogram-axis"><span>CLEAN</span><span>EXPLORE</span><span>VISUALIZE</span></div><div class="visual-footline"><span>RISK FACTOR ANALYSIS</span><span>PANDAS · SEABORN</span></div></div>
-            <div class="project-body"><div class="project-meta"><span class="project-type">HEALTHCARE ANALYTICS</span><span class="project-number mono">01 / 03</span></div><h3>Diabetes Risk Analysis</h3><p>Built an end-to-end analysis pipeline to examine health indicators, clean missing and outlier data, and visualize diabetes risk factors.</p><div class="tag-list"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span></div><div class="project-links"><a href="https://colab.research.google.com/drive/1uI5FYPxhqIoHoyCQw55lBT2tglgeGzQh?usp=sharing" target="_blank" rel="noreferrer">View Colab notebook <span aria-hidden="true">↗</span></a></div></div>
+            <div class="project-visual visual-eda"><img class="project-image" src="Diabetes%20Risk%20.png" alt="Correlation heatmap and Python code for the diabetes risk analysis" loading="lazy"></div>
+            <div class="project-body"><div class="project-meta"><span class="project-type">HEALTHCARE ANALYTICS</span><span class="project-number mono">01 / 03</span></div><h3>Diabetes Risk Analysis</h3><p>Built an end-to-end analysis pipeline to examine health indicators, clean missing and outlier data, and visualize diabetes risk factors.</p><div class="tag-list"><span>Python</span><span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span></div><div class="project-actions"><a class="project-btn" href="https://colab.research.google.com/drive/1uI5FYPxhqIoHoyCQw55lBT2tglgeGzQh?usp=sharing" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>Google Colab</a><a class="project-btn" href="Diabetes%20Risk%20Presentation.pptx" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Presentation</a></div></div>
           </article>
           <article class="project-card" data-categories="excel-sql">
-            <div class="project-visual visual-operations" aria-hidden="true"><div class="visual-topline"><span>DEMOGRAPHIC DATA</span><span>SQL / EXCEL</span></div><div class="ops-head"><span>WORKFLOW</span><span>TOOL</span><span>FOCUS</span><span>✓</span></div><div class="ops-row"><span>Data cleaning</span><span>Excel</span><span>Records</span><i class="status-good"></i></div><div class="ops-row"><span>Aggregation</span><span>T-SQL</span><span>Population</span><i class="status-good"></i></div><div class="ops-row"><span>Multi-table match</span><span>SQL</span><span>Integrity</span><i class="status-good"></i></div><div class="ops-row"><span>Interactive views</span><span>Excel</span><span>Slicers</span><i class="status-good"></i></div><div class="visual-footline"><span>REFUGEE CAMP POPULATION</span><span>MONITORING DASHBOARD</span></div></div>
+            <div class="project-visual visual-operations"><img class="project-image" src="Population.png" alt="Population and displacement dashboard for refugee camps" loading="lazy"></div>
             <div class="project-body"><div class="project-meta"><span class="project-type">DEMOGRAPHIC DATA MANAGEMENT</span><span class="project-number mono">02 / 03</span></div><h3>Population Clean Dashboard for Refugee Camps</h3><p>Created a data-cleaning and monitoring dashboard for camp population records, using SQL to aggregate and match tables and Excel Pivot Tables and Slicers to track population and resources.</p><div class="tag-list"><span>SQL Server</span><span>T-SQL</span><span>Excel</span><span>Pivot Tables</span><span>Slicers</span></div></div>
           </article>
           <article class="project-card" data-categories="excel-sql python power-bi">
@@ -130,30 +127,27 @@
 
       <section class="skills-section section-pad" id="skills" aria-labelledby="skills-title">
         <div class="section-wrap">
-          <div class="section-heading"><p class="eyebrow">TECHNICAL &amp; CORE SKILLS <span class="eyebrow-divider">/</span> 04</p><h2 id="skills-title">Tools for careful<br><span>data analysis.</span></h2></div>
+          <div class="section-heading"><p class="eyebrow">TECHNICAL &amp; CORE SKILLS <span class="eyebrow-divider">/</span> 03</p><h2 id="skills-title">Tools for careful<br><span>data analysis.</span></h2></div>
           <div class="skills-grid">
-            <article class="skill-group"><div class="skill-group-heading"><span class="skill-index mono">A</span><h3>Analysis &amp; core competencies</h3></div><p>Methods and strengths listed in my CV.</p><ul class="skill-tags" data-skill-category="analysis"><li>Data cleaning</li><li>Exploratory Data Analysis</li><li>Statistical analysis</li><li>Data wrangling</li><li>Business reporting</li><li>Problem solving</li></ul></article>
-            <article class="skill-group"><div class="skill-group-heading"><span class="skill-index mono">B</span><h3>Programming, databases &amp; BI</h3></div><p>Tools used across my training and project work.</p><ul class="skill-tags" data-skill-category="tools"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li><li>SQL</li><li>SQL Server</li><li>SSMS</li><li>T-SQL</li><li>Joins &amp; aggregations</li><li>Microsoft Excel</li><li>Pivot Tables</li><li>DAX measures</li><li>Slicers</li><li>Power BI</li><li>Interactive dashboards</li></ul></article>
+            <article class="skill-group"><div class="skill-group-heading"><span class="skill-index mono">A</span><h3>Analytical Methods &amp; Problem Solving</h3></div><p>Analytical methods and strengths developed through practical project work.</p><ul class="skill-tags" data-skill-category="analysis"><li>Data cleaning</li><li>Exploratory Data Analysis</li><li>Statistical analysis</li><li>Data wrangling</li><li>Business reporting</li><li>Problem solving</li></ul></article>
+            <article class="skill-group"><div class="skill-group-heading"><span class="skill-index mono">B</span><h3>Programming, databases &amp; BI</h3></div><p>Technologies for analysis, modeling, and reporting.</p><ul class="skill-tags" data-skill-category="tools"><li>Python</li><li>Pandas</li><li>NumPy</li><li>Matplotlib</li><li>Seaborn</li><li>SQL</li><li>SQL Server</li><li>SSMS</li><li>T-SQL</li><li>Joins &amp; aggregations</li><li>Microsoft Excel</li><li>Pivot Tables</li><li>DAX measures</li><li>Slicers</li><li>Power BI</li><li>Interactive dashboards</li></ul></article>
           </div>
           <div class="skills-baseline"><span class="mono">ALWAYS LEARNING</span><span class="baseline-line"></span><span class="mono">ONE QUESTION AT A TIME <b>↗</b></span></div>
         </div>
       </section>
 
       <section class="training-section section-wrap section-pad" id="training" aria-labelledby="training-title">
-        <div class="training-intro"><p class="eyebrow">EDUCATION &amp; CERTIFICATIONS <span class="eyebrow-divider">/</span> 05</p><h2 id="training-title">Learning with<br><span>purpose.</span></h2><p>Professional analytics training, scientific study, and continued technical learning.</p><a class="text-link" href="https://depi.gov.eg/" target="_blank" rel="noreferrer">Digital Egypt Pioneers Initiative <span aria-hidden="true">↗</span></a></div>
+        <div class="training-intro"><p class="eyebrow">CERTIFICATIONS <span class="eyebrow-divider">/</span> 04</p><h2 id="training-title">Professional<br><span>certifications.</span></h2></div>
         <div class="training-list" id="training-list">
-          <article class="training-item"><span class="training-mark">01</span><div><h3>Professional Data Analytics</h3><p>Digital Egypt Pioneers Initiative (DEPI)</p></div></article>
-          <article class="training-item"><span class="training-mark">02</span><div><h3>Master of Science in Materials Science</h3><p>Institute of Graduate Studies and Research, Alexandria University</p></div></article>
-          <article class="training-item"><span class="training-mark">03</span><div><h3>Data Fundamentals</h3><p>BMI</p><span class="training-detail">August 2026</span></div><span class="training-status">CERTIFICATE</span></article>
-          <article class="training-item"><span class="training-mark">04</span><div><h3>AI For You: Training and Assessment</h3><p>Oracle</p><span class="training-detail">August 2026</span></div><span class="training-status">CERTIFICATE</span></article>
-          <article class="training-item"><span class="training-mark">05</span><div><h3>Programming Using Python</h3><p>Institute of Graduate Studies and Research, Alexandria University</p><span class="training-detail">December 2024</span></div><span class="training-status">CERTIFICATE</span></article>
-          <article class="training-item"><span class="training-mark">06</span><div><h3>FDTC Training Programs</h3><p>Alexandria University</p><span class="training-detail">February 2024</span></div><span class="training-status">TRAINING</span></article>
+          <article class="training-item"><span class="training-mark">01</span><div><h3>Data Fundamentals</h3><p>BMI</p><span class="training-detail">August 2026</span></div><a class="training-status" href="https://www.credly.com/badges/3004e974-b7c9-40c9-a32b-4205988e12e9/linked_in_profile" target="_blank" rel="noopener noreferrer" aria-label="View Data Fundamentals certificate on Credly">CERTIFICATE</a></article>
+          <article class="training-item"><span class="training-mark">02</span><div><h3>AI For You: Training and Assessment</h3><p>Oracle</p><span class="training-detail">August 2026</span></div><a class="training-status" href="https://www.linkedin.com/posts/share-7490078516517187585-JTkL/?utm_source=share&amp;utm_medium=member_desktop&amp;rcm=ACoAADT8eyMBUYZkQtqetC9dBpdnPyIu5tQ5Zd8&amp;lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3B%2Bx3WxWPgSNGOKLIazmGsXw%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="View AI For You certificate on LinkedIn">CERTIFICATE</a></article>
+          <article class="training-item"><span class="training-mark">03</span><div><h3>Programming Using Python</h3><p>Institute of Graduate Studies and Research, Alexandria University</p><span class="training-detail">December 2024</span></div><span class="training-status">CERTIFICATE</span></article>
         </div>
       </section>
 
       <section class="contact-section section-pad" id="contact" aria-labelledby="contact-title">
         <div class="section-wrap contact-grid">
-          <div class="contact-copy"><p class="eyebrow">CONTACT <span class="eyebrow-divider">/</span> 06</p><h2 id="contact-title">Let's talk<br><span>data.</span></h2><p>Based in Alexandria, Egypt. Get in touch about data analysis opportunities, research, or project collaborations.</p><div class="social-links"><a href="https://www.linkedin.com/in/amira-adel-603865209" target="_blank" rel="noreferrer">LinkedIn <span aria-hidden="true">↗</span></a><a href="mailto:amiraadel@alexu.edu.eg">amiraadel@alexu.edu.eg <span aria-hidden="true">↗</span></a><a href="tel:+2001226300187">+2001226300187</a></div></div>
+          <div class="contact-copy"><p class="eyebrow">CONTACT <span class="eyebrow-divider">/</span> 05</p><h2 id="contact-title">Let's talk<br><span>data.</span></h2><p>Open to data analysis roles and research collaborations.</p><div class="social-links"><a href="https://www.linkedin.com/in/amira-adel-603865209" target="_blank" rel="noreferrer"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12" rx="1"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a><a href="mailto:amiraadel@alexu.edu.eg"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>amiraadel@alexu.edu.eg</a><a href="tel:+2001226300187"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.96.35 1.9.69 2.79a2 2 0 0 1-.45 2.11L8.08 9.89a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.89.34 1.83.57 2.79.69A2 2 0 0 1 22 16.92z"/></svg>+2001226300187</a></div></div>
           <form class="contact-form" id="contact-form">
             <div class="form-heading"><span>START A CONVERSATION</span><span class="mono">// 01</span></div>
             <label for="name">Your name</label><input id="name" name="name" type="text" autocomplete="name" placeholder="How should I address you?" required>

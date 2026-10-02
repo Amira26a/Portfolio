@@ -1,13 +1,35 @@
-// Update the sample content and portfolio metrics in index.html.
+// Update the sample content in index.html.
 const filterButtons = document.querySelectorAll(".filter-button");
 const visibleCount = document.querySelector("#visible-count");
 const emptyState = document.querySelector("#empty-state");
 const menuToggle = document.querySelector(".menu-toggle");
 const navLinks = document.querySelector("#nav-links");
+const themeToggle = document.querySelector(".theme-toggle");
 const portfolioConfig = window.PORTFOLIO_CONFIG;
+
+function formatProjectCount(count) {
+  return count > 15 ? "+15" : String(count).padStart(2, "0");
+}
+
 const portfolioClient = window.supabase?.createClient && portfolioConfig?.supabaseUrl && !portfolioConfig.supabaseUrl.includes("YOUR_PROJECT") && portfolioConfig.supabaseAnonKey && !portfolioConfig.supabaseAnonKey.includes("YOUR_SUPABASE")
   ? window.supabase.createClient(portfolioConfig.supabaseUrl, portfolioConfig.supabaseAnonKey)
   : null;
+
+function setTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  const nextTheme = theme === "light" ? "dark" : "light";
+  themeToggle.setAttribute("aria-label", `Switch to ${nextTheme} theme`);
+  themeToggle.title = `Switch to ${nextTheme} theme`;
+  themeToggle.querySelector(".theme-toggle-icon").textContent = theme === "light" ? "☾" : "☼";
+  try {
+    localStorage.setItem("portfolio-theme", theme);
+  } catch {}
+}
+
+setTheme(document.documentElement.dataset.theme || "dark");
+themeToggle.addEventListener("click", () => {
+  setTheme(document.documentElement.dataset.theme === "light" ? "dark" : "light");
+});
 
 // Tune these values to adjust the background's density, drift, and palette.
 const flowSettings = {
@@ -141,7 +163,7 @@ filterButtons.forEach((button) => {
       if (shouldShow) shown += 1;
     });
 
-    visibleCount.textContent = String(shown).padStart(2, "0");
+    visibleCount.textContent = formatProjectCount(shown);
     emptyState.hidden = shown > 0;
   });
 });
@@ -176,28 +198,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: "-30% 0px -60% 0px" });
 
 document.querySelectorAll("main section[id]").forEach((section) => sectionObserver.observe(section));
-
-// Animate the portfolio sample totals once they enter the viewport.
-const metricObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const metric = entry.target;
-    const target = Number(metric.dataset.count);
-    const duration = 850;
-    const started = performance.now();
-
-    const updateMetric = (now) => {
-      const progress = Math.min((now - started) / duration, 1);
-      metric.textContent = String(Math.round(target * (1 - Math.pow(1 - progress, 3))));
-      if (progress < 1) requestAnimationFrame(updateMetric);
-    };
-
-    requestAnimationFrame(updateMetric);
-    observer.unobserve(metric);
-  });
-}, { threshold: 0.55 });
-
-document.querySelectorAll("[data-count]").forEach((metric) => metricObserver.observe(metric));
 
 function makeElement(tag, className, text) {
   const element = document.createElement(tag);
@@ -268,26 +268,9 @@ function renderPublicProjects(projects) {
   filterButtons.forEach((button) => {
     const count = button.dataset.filter === "all" ? projects.length : (counts[button.dataset.filter] || 0);
     const badge = button.querySelector("span");
-    if (badge) badge.textContent = String(count).padStart(2, "0");
+    if (badge) badge.textContent = formatProjectCount(count);
   });
-  visibleCount.textContent = String(projects.length).padStart(2, "0");
-}
-
-function renderPublicMetrics(metrics) {
-  const grid = document.querySelector(".kpi-grid");
-  const colors = ["kpi-teal", "kpi-coral", "kpi-blue", "kpi-dark"];
-  grid.replaceChildren();
-  if (!metrics.length) grid.append(makeElement("p", "kpi-empty", "No metrics have been added yet."));
-  metrics.forEach((metric, index) => {
-    const card = makeElement("article", `kpi-card ${colors[index % colors.length]}`);
-    const title = makeElement("span", "kpi-label", metric.title);
-    const number = makeElement("div", "kpi-number");
-    number.append(makeElement("span", "", String(metric.value)));
-    if (metric.suffix) number.append(makeElement("span", "kpi-plus", metric.suffix));
-    card.append(title, number, makeElement("span", "kpi-foot", metric.description || ""), makeElement("span", "kpi-index mono", String(index + 1).padStart(2, "0")));
-    grid.append(card);
-  });
-  document.querySelector(".sample-note")?.remove();
+  visibleCount.textContent = formatProjectCount(projects.length);
 }
 
 function renderPublicSkills(skills) {
@@ -336,14 +319,13 @@ function renderPublicCertificates(certificates) {
 
 async function loadPublicContent() {
   if (!portfolioClient) return;
-  const tables = ["projects", "metrics", "skills", "certificates"];
+  const tables = ["projects", "skills", "certificates"];
   try {
     const results = await Promise.all(tables.map((table) => portfolioClient.from(table).select("*").order("sort_order", { ascending: true })));
     results.forEach((result, index) => {
       if (result.error || !result.data) return;
       switch (tables[index]) {
         case "projects": renderPublicProjects(result.data); break;
-        case "metrics": renderPublicMetrics(result.data); break;
         case "skills": renderPublicSkills(result.data); break;
         case "certificates": renderPublicCertificates(result.data); break;
       }
